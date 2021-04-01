@@ -1,0 +1,7 @@
+{
+  "name": "avurudu-nakath-app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue"
+}
