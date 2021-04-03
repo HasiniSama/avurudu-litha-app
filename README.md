@@ -1,1 +1,0 @@
-# avurudu-nakath-app
