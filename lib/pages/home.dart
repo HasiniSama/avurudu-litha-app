@@ -12,11 +12,18 @@ class _HomeState extends State<Home> {
   int selectedIndex = 0;
 
   List<Nakath> nakaths  = [
-    Nakath( name: 'Nonagathaya', time: 'hey'),
+    Nakath( name: 'බද', time: 'hey'),
     Nakath( name: 'Wada Alleema', time: 'wada'),
+    Nakath( name: 'Wada Alleema', time: 'wada'),
+    Nakath( name: 'Wada ', time: 'wada'),
+    Nakath( name: 'Wada Alleema', time: 'wada'),
+    Nakath( name: 'Wada Alleema', time: 'wada'),
+    Nakath( name: 'Wada Alleema', time: 'wada'),
+    Nakath( name: 'Wada Alleem', time: 'wada'),
     Nakath( name: 'Hisa thel gaama', time: 'oiled')
   ];
 
+  //List <String> items = ['hi', 'bye','rewww','rrrr'];
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +51,44 @@ class _HomeState extends State<Home> {
         ),
       ),
       body: Center(
+        child: ListWheelScrollView(
+          itemExtent: 500,
+          physics: FixedExtentScrollPhysics(),
+          children:[
+            ListView.builder(
+            itemCount: nakaths.length,
+              itemBuilder: (context, index) {
+                final item = nakaths[index];
+                return Container(
 
+                  child: Card(
+                    elevation: 5,
+                    margin: EdgeInsets.fromLTRB(10.0, 20.0, 10.0, 20.0),
+                    child: Container(
+                      height: 150,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('assets/Background2.jpg'),
+                          fit: BoxFit.fill,
+                          alignment: Alignment.topCenter,
+                        ),
+                      ),
+                      child: ListTile(
+                        title: Text('${item.name}',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        subtitle: Text('${item.time}',
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
+        ],
+        ),
       ),
       backgroundColor: Colors.green,
 
