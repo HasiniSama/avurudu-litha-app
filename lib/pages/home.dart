@@ -23,7 +23,7 @@ class _HomeState extends State<Home> {
     Nakath( name: 'Hisa thel gaama', time: 'oiled')
   ];
 
-  //List <String> items = ['hi', 'bye','rewww','rrrr'];
+  List <String> items = ['hi', 'bye','rewww','rrrr'];
 
   @override
   Widget build(BuildContext context) {
@@ -44,50 +44,46 @@ class _HomeState extends State<Home> {
                   )
               ),
             ),
-            leading: Icon(Icons.arrow_back),
             elevation: 20,
             backgroundColor: Colors.lightGreen,
           ),
         ),
       ),
       body: Center(
-        child: ListWheelScrollView(
-          itemExtent: 500,
-          physics: FixedExtentScrollPhysics(),
-          children:[
-            ListView.builder(
-            itemCount: nakaths.length,
-              itemBuilder: (context, index) {
+        child: ListWheelScrollView.useDelegate(
+          itemExtent: 200,
+          diameterRatio: 2,
+          physics: BouncingScrollPhysics(),
+          childDelegate: ListWheelChildBuilderDelegate(
+              childCount: nakaths.length,
+              builder: (BuildContext context, int index) {
                 final item = nakaths[index];
                 return Container(
-
-                  child: Card(
-                    elevation: 5,
-                    margin: EdgeInsets.fromLTRB(10.0, 20.0, 10.0, 20.0),
-                    child: Container(
-                      height: 150,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage('assets/Background2.jpg'),
-                          fit: BoxFit.fill,
-                          alignment: Alignment.topCenter,
-                        ),
+                  height: 190,
+                  margin: EdgeInsets.fromLTRB(10.0, 20.0, 10.0, 20.0),
+                  decoration: BoxDecoration(
+                    color: Colors.green,
+                    image: DecorationImage(
+                      image: AssetImage('assets/Scroll2.png'),
+                      fit: BoxFit.fill,
+                      alignment: Alignment.topCenter,
+                    ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(0.0, 50.0, 0.0, 10.0),
+                    child: ListTile(
+                      title: Text('${item.name}',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontWeight: FontWeight.bold),
                       ),
-                      child: ListTile(
-                        title: Text('${item.name}',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        subtitle: Text('${item.time}',
-                          textAlign: TextAlign.center,
-                        ),
+                      subtitle: Text('${item.time}',
+                        textAlign: TextAlign.center,
                       ),
                     ),
                   ),
                 );
-              },
-            ),
-        ],
+              }
+          ),
         ),
       ),
       backgroundColor: Colors.green,
