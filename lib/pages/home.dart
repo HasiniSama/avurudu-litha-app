@@ -2,6 +2,8 @@ import 'package:clip_shadow/clip_shadow.dart';
 import 'package:flutter/material.dart';
 import 'package:avurudu_nakath_app/nakath_list.dart';
 import 'package:avurudu_nakath_app/custom_app_bar.dart';
+import 'package:clickable_list_wheel_view/clickable_list_wheel_widget.dart';
+import 'package:clickable_list_wheel_view/measure_size.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -10,20 +12,17 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int selectedIndex = 0;
+  final _scrollController = FixedExtentScrollController();
+  static const double _itemHeight = 250;
 
-  List<Nakath> nakaths  = [
-    Nakath( name: 'බද', time: 'hey'),
-    Nakath( name: 'Wada Alleema', time: 'wada'),
-    Nakath( name: 'Wada Alleema', time: 'wada'),
-    Nakath( name: 'Wada ', time: 'wada'),
-    Nakath( name: 'Wada Alleema', time: 'wada'),
-    Nakath( name: 'Wada Alleema', time: 'wada'),
-    Nakath( name: 'Wada Alleema', time: 'wada'),
-    Nakath( name: 'Wada Alleem', time: 'wada'),
-    Nakath( name: 'Hisa thel gaama', time: 'oiled')
-  ];
-
-  List <String> items = ['hi', 'bye','rewww','rrrr'];
+  void updateTime (index){
+    Nakath instance = nakaths[index];
+    //navigate to home screen
+    Navigator.pushNamed(context, '/details', arguments: {
+      'name': instance.name,
+      'description': instance.description,
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +34,7 @@ class _HomeState extends State<Home> {
           boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 10, spreadRadius: 10,
             offset: Offset( 0.0 , 1.0))],
           child: AppBar(
+            automaticallyImplyLeading : false,
             centerTitle: true,
             flexibleSpace: Container(
               decoration: BoxDecoration(
@@ -50,43 +50,60 @@ class _HomeState extends State<Home> {
         ),
       ),
       body: Center(
-        child: ListWheelScrollView.useDelegate(
-          itemExtent: 200,
-          diameterRatio: 2,
-          physics: BouncingScrollPhysics(),
-          childDelegate: ListWheelChildBuilderDelegate(
-              childCount: nakaths.length,
-              builder: (BuildContext context, int index) {
-                final item = nakaths[index];
-                return Container(
-                  height: 190,
-                  margin: EdgeInsets.fromLTRB(10.0, 20.0, 10.0, 20.0),
-                  decoration: BoxDecoration(
-                    color: Colors.green,
-                    image: DecorationImage(
-                      image: AssetImage('assets/Scroll2.png'),
-                      fit: BoxFit.fill,
-                      alignment: Alignment.topCenter,
-                    ),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(0.0, 50.0, 0.0, 10.0),
-                    child: ListTile(
-                      title: Text('${item.name}',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      subtitle: Text('${item.time}',
-                        textAlign: TextAlign.center,
+        child: ClickableListWheelScrollView(
+          scrollController: _scrollController,
+          itemHeight: _itemHeight,
+          itemCount: nakaths.length,
+          onItemTapCallback: (index) {
+            updateTime(index);
+          },
+          child: ListWheelScrollView.useDelegate(
+            controller: _scrollController,
+            itemExtent: _itemHeight,
+            diameterRatio: 2,
+            physics: FixedExtentScrollPhysics(),
+            overAndUnderCenterOpacity: 0.5,
+            childDelegate: ListWheelChildBuilderDelegate(
+                childCount: nakaths.length,
+                builder: (BuildContext context, int index) {
+                  final item = nakaths[index];
+                  return Container(
+                    height: 190,
+                    margin: EdgeInsets.fromLTRB(10.0, 20.0, 10.0, 20.0),
+                    decoration: BoxDecoration(
+                      color: Colors.lightGreen[900],
+                      image: DecorationImage(
+                        image: AssetImage('assets/Scroll2.png'),
+                        fit: BoxFit.fill,
+                        alignment: Alignment.topCenter,
                       ),
                     ),
-                  ),
-                );
-              }
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(0.0, 50.0, 0.0, 10.0),
+                      child: ListTile(
+                        title: Text('${item.name}',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 30,
+                          ),
+                        ),
+                        subtitle: Text('${item.time}',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
+                }
+            ),
           ),
-        ),
+        )
       ),
-      backgroundColor: Colors.green,
+      backgroundColor: Colors.lightGreen[900],
 
     );
   }

@@ -9,8 +9,12 @@ class Details extends StatefulWidget {
 }
 
 class _DetailsState extends State<Details> {
+  Map data = {};
   @override
   Widget build(BuildContext context) {
+
+    data = ModalRoute.of(context).settings.arguments;
+
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(200),
@@ -28,17 +32,42 @@ class _DetailsState extends State<Details> {
                   )
               ),
             ),
-            leading: Icon(Icons.arrow_back),
             elevation: 20,
-            backgroundColor: Colors.lightGreen,
           ),
         ),
       ),
-      body: Center(
-
-      ),
-      backgroundColor: Colors.green,
-
+      body: Container(
+            height: 590,
+            margin: EdgeInsets.fromLTRB(10.0, 20.0, 10.0, 20.0),
+            decoration: BoxDecoration(
+              color: Colors.lightGreen[900],
+              image: DecorationImage(
+                image: AssetImage('assets/Scroll1.png'),
+                fit: BoxFit.fill,
+                alignment: Alignment.topCenter,
+              ),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(60.0),
+              child: ListTile(
+                title: Text(data['name'],
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 30,
+                  ),
+                ),
+                subtitle: Text(data['description'],
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
+                ),
+              ),
+            ),
+          ),
+      backgroundColor: Colors.lightGreen[900],
     );
   }
 }
