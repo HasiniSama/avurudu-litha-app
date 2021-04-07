@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:avurudu_nakath_app/nakath_list.dart';
 import 'package:avurudu_nakath_app/custom_app_bar.dart';
 import 'package:clickable_list_wheel_view/clickable_list_wheel_widget.dart';
-import 'package:clickable_list_wheel_view/measure_size.dart';
 
 class Home extends StatefulWidget {
   @override
