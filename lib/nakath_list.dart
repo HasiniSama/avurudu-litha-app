@@ -17,14 +17,14 @@ class Nakath{
   Nakath ({this.title,this.subtitle,this.name, this.time, this.description,this.day, this.hour, this.minute});
 
 
-  Future<void> scheduleNotification() async {
+  Future<void> scheduleNotification(int index) async {
     var scheduleNotificationDateTime = DateTime(2021, 4, day, hour, minute);
     var androidChannelSpecifics = AndroidNotificationDetails(
       'alarm_notif',
       'alarm_notif',
       'Channel for Alarm notification',
       icon: 'codex_logo',
-      sound: RawResourceAndroidNotificationSound('a_long_cold_sting'),
+      sound: RawResourceAndroidNotificationSound('koha_sound'),
       largeIcon: DrawableResourceAndroidBitmap('codex_logo'),
       enableLights: true,
       color: const Color.fromARGB(255, 255, 0, 0),
@@ -37,12 +37,12 @@ class Nakath{
       styleInformation: DefaultStyleInformation(true, true),
     );
     var iosChannelSpecifics = IOSNotificationDetails(
-      sound: 'a_long_cold_sting.wav',
+      sound: 'Koha_Sound.mp3.wav',
     );
     var platformChannelSpecifics = NotificationDetails(
         android: androidChannelSpecifics, iOS: iosChannelSpecifics);
     await flutterLocalNotificationsPlugin.schedule(
-      0,
+      index,
       title,
       subtitle,
       scheduleNotificationDateTime,
@@ -59,9 +59,9 @@ List<Nakath> nakaths  = [
       name: 'kj i| ne,Su ',
       time: 'wfma%,a ui 16',
       description: "wNskj pkao% j¾Ih iy wNskj iQ¾h j¾Ih i|yd wfma%,a ui 16 jk isl=rdod Èk kj i| ne,Su uekú'",
-      day : 16,
-      hour: 0,
-      minute: 0),
+      day : 10,
+      hour: 12,
+      minute: 52),
   Nakath(
       title: 'පරණ අවුරුද්ද සඳහා ස්නානය',
       subtitle: 'අප්‍රේල් මස 12 වෙනි සඳුදා දින දිවුල්පත් යුෂ මිශ්‍ර නානු ගා ස්නානය කොට ඉෂ්ට දේවතා අනුස්මරණයෙහි යෙදී වාසය මැනවි.',
