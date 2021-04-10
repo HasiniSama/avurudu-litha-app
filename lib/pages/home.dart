@@ -14,7 +14,7 @@ class _HomeState extends State<Home> {
   final _scrollController = FixedExtentScrollController();
   static const double _itemHeight = 250;
 
-  void updateTime (index){
+  void gotoDetails (index){
     Nakath instance = nakaths[index];
     //navigate to home screen
     Navigator.pushNamed(context, '/details', arguments: {
@@ -22,6 +22,7 @@ class _HomeState extends State<Home> {
       'description': instance.description,
     });
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +55,7 @@ class _HomeState extends State<Home> {
           itemHeight: _itemHeight,
           itemCount: nakaths.length,
           onItemTapCallback: (index) {
-            updateTime(index);
+            gotoDetails(index);
           },
           child: ListWheelScrollView.useDelegate(
             controller: _scrollController,
@@ -77,21 +78,25 @@ class _HomeState extends State<Home> {
                         alignment: Alignment.topCenter,
                       ),
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(0.0, 50.0, 0.0, 10.0),
+                    child: Center(
                       child: ListTile(
                         title: Text('${item.name}',
                           textAlign: TextAlign.center,
                           style: TextStyle(
+                            color: Colors.black54,
                             fontWeight: FontWeight.bold,
-                            fontSize: 30,
+                            fontSize: 40,
+                            fontFamily: 'Abhaya',
+                            height: 1,
                           ),
                         ),
                         subtitle: Text('${item.time}',
                           textAlign: TextAlign.center,
                           style: TextStyle(
+                            color: Colors.grey[700],
                             fontWeight: FontWeight.bold,
-                            fontSize: 20,
+                            fontSize: 25,
+                            fontFamily: 'Abhaya',
                           ),
                         ),
                       ),

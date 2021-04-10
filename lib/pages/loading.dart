@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:timezone/timezone.dart';
-import 'package:intl/intl.dart';
 
 
 class Loading extends StatefulWidget {
@@ -11,20 +9,17 @@ class Loading extends StatefulWidget {
 
 class _LoadingState extends State<Loading>{
 
-  void convertLocalToDetroit() async {
-    DateTime nowTime = DateTime.now(); //local time
-    final srilankaTime = new TZDateTime.from(nowTime, getLocation('Asia/Colombo')); //time in sri lanka
-    print('Sri Lankan Time: ' + srilankaTime.toString());
-
-    String time = DateFormat.jm().format(srilankaTime);
-    String time24 = DateFormat.Hm().format(srilankaTime);
-    String day = DateFormat.yMMMMd().format(srilankaTime);
+  Future navigateToHomePage(context) async {
+    Future.delayed(Duration(seconds: 1),()
+    {
+      Navigator.pushReplacementNamed(context, '/home',);
+    });
   }
 
   @override
   void initState() {
     super.initState();
-    convertLocalToDetroit();
+    navigateToHomePage(context);
   }
 
   @override
@@ -42,10 +37,11 @@ class _LoadingState extends State<Loading>{
                     size: 80.0,
                   ),
                 ),
-                Text('ආයුබෝවන්!',
+                Text('wdhqfndajka`',
                   style: TextStyle(
                       color: Colors.lightGreen,
-                      fontSize: 50.0
+                      fontSize: 50.0,
+                      fontFamily: 'Astro',
                   ),
                 ),
               ],

@@ -55,6 +55,7 @@ class _DetailsState extends State<Details> {
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 30,
+                    fontFamily: 'Abhaya',
                   ),
                 ),
                 subtitle: Text(data['description'],
@@ -62,6 +63,7 @@ class _DetailsState extends State<Details> {
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 20,
+                    fontFamily: 'Bindumathi',
                   ),
                 ),
               ),
