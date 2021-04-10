@@ -23,11 +23,14 @@ class _DetailsState extends State<Details> {
           boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 10, spreadRadius: 10,
               offset: Offset( 0.0 , 1.0))],
           child: AppBar(
+            leading: BackButton(
+                color: Colors.black
+            ),
             centerTitle: true,
             flexibleSpace: Container(
               decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage('assets/Background2.jpg'),
+                      image: AssetImage('assets/Background3.jpg'),
                       fit: BoxFit.fill
                   )
               ),

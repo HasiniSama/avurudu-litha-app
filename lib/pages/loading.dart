@@ -37,7 +37,7 @@ class _LoadingState extends State<Loading>{
                     size: 80.0,
                   ),
                 ),
-                Text('wdhqfndajka`',
+                Text('wdhqfndajka',
                   style: TextStyle(
                       color: Colors.lightGreen,
                       fontSize: 50.0,

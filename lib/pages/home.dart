@@ -39,7 +39,7 @@ class _HomeState extends State<Home> {
             flexibleSpace: Container(
               decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage('assets/Background2.jpg'),
+                      image: AssetImage('assets/Background3.jpg'),
                       fit: BoxFit.fill
                   )
               ),
